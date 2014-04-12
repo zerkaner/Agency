@@ -1,0 +1,50 @@
+﻿using System;
+
+namespace Primitive_Architecture {
+  class HeaterAgent : Agent {
+    private double _thermalOutput;  // Actual thermal output.
+    private double _thermalNominal; // Scheduled output value.
+    private double _thermalChange;  // Output changing rate.
+
+    private const int CtrMax = 5;                    // Maximum adjustment value.
+    private const double ThermalMax = 2000;          // Maximum thermal output.
+    private const double RiseDelay = 2;              // T1 value for PT-1 equation.
+    private const double CooldownCoefficient = 0.55; // Factor to reduce cooldown speed.
+    private readonly TempEnvironment _room;          // The room to heat.
+
+    public double CtrValue { get; set; }    // External applied control value.
+
+
+
+    public HeaterAgent(TempEnvironment room) : base("Heater") {
+      _room = room;
+      CtrValue = 3.9;
+      _thermalOutput = 400;
+    }
+
+
+
+    public override void Tick() {
+      // Set the current output and new nominal output (based on the new setting).
+      _thermalOutput = _thermalOutput + _thermalChange;
+      _thermalNominal = (ThermalMax/CtrMax)*CtrValue;
+
+      // Calculate the change of the current thermal output (delayed PT-1 element).
+      _thermalChange = (_thermalNominal - _thermalOutput)/RiseDelay;
+      if (_thermalChange < 0) _thermalChange *= CooldownCoefficient;
+
+      // Set the output as thermal gain of the environment.
+      _room.TempGain = _thermalOutput;
+      Console.WriteLine(ToString());
+    }
+
+
+
+    protected override string ToString() {
+      var control = (double) ((int) (CtrValue*10))/10 + " /" + CtrMax;
+      var percent = 0;
+      if (_thermalNominal > 0) percent = (int)Math.Round((_thermalOutput/_thermalNominal)*100);
+      return "Agent: " + _id + " - Stellwert: " + control + " - Leistung: " + percent+ " %";
+    }
+  }
+}
