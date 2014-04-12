@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Primitive_Architecture {
+  
+  class Executor {
+
+    public static void Main(String [] args)
+    {
+      Console.WriteLine("Test");
+      Console.ReadLine();
+    }
+
+  }
+}
