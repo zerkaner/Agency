@@ -6,7 +6,7 @@ namespace Primitive_Architecture {
     private const double Temp2 = 28;
     private const double Thermal1 = 0;
     private const double Thermal2 = 2000;
-    private const double WindowInfl = 1.52;
+    private const double WindowInfl = 2;
 
     public double TempGain { set; private get; }
     public bool WindowOpen { get; set; }
@@ -14,7 +14,7 @@ namespace Primitive_Architecture {
 
 
     public TempEnvironment() {
-      Temperature = 22;
+      Temperature = 15;
       WindowOpen = false;
       TempGain = 0;
     }
@@ -30,10 +30,12 @@ namespace Primitive_Architecture {
       if (WindowOpen) tempLoss *= 1 + ((Temperature - Temp1)/(Temp2 - Temp1))*WindowInfl;
 
       // Summarize thermal gain and loss to get the new temperature.
-      Temperature = Temperature + (TempGain - tempLoss)/tempUnit;
+      Temperature = Temperature + 0.5 * (TempGain - tempLoss)/tempUnit;
 
       // Parameter, Spaces total (- = left-aligned, digits before . digits after)
-      Console.WriteLine("Agent: Room   - Gain: "+(int)TempGain+" - Loss: "+(int)tempLoss);
+      Console.WriteLine("Agent: Room   - Temperatur: " + String.Format("{0,4:00.0}", Temperature) 
+             + " °C ("+(int)TempGain+" / "+(int)tempLoss+
+             ") - Fenster: " + (WindowOpen ? "offen" : "geschlossen") + ".");
     }
 
   }

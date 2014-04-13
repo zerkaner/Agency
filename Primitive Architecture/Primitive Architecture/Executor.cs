@@ -4,14 +4,16 @@ using System.Collections.Generic;
 namespace Primitive_Architecture {
   internal class Executor {
     private readonly List<Agent> _agents;
-    private readonly Environment _environment;
+    private readonly TempEnvironment _environment;
 
     public Executor() {
       _environment = new TempEnvironment();
-      _agents = new List<Agent> {
-        new HeaterAgent((TempEnvironment) _environment),
-        new AgentSmith((TempEnvironment) _environment)
-      };
+
+      var heater = new HeaterAgent(_environment);
+      var contrl = new TempAgent(_environment, heater);
+      var smith = new AgentSmith(_environment);
+
+      _agents = new List<Agent> {contrl, heater, smith};
 
       Run();
     }

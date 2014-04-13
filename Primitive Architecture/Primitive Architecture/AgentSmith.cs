@@ -19,17 +19,15 @@ namespace Primitive_Architecture {
       // Smith really likes a breeze of fresh air every now and then ...
       var random = new Random();
       var rnd = random.Next(10);
-      if (rnd > 6) {
-        rnd = random.Next(10);
-        _room.WindowOpen = rnd > 7;
-      }
+      if (rnd < 7) return;
+      
+      rnd = random.Next(10);
+      var nowOpen = rnd > 7;
+      if (nowOpen != _room.WindowOpen)
+        Console.WriteLine("\n *** Agent Smith hat das Fenster " +
+                          (nowOpen? "geöffnet" : "geschlossen") + "! ***");
 
-      Console.WriteLine(ToString());
-    }
-
-    protected override string ToString() {
-      return "Agent: " + _id + " - Temperatur: " + String.Format("{0,4:00.0}", _room.Temperature) 
-             + " °C - Fenster: " + (_room.WindowOpen ? "offen" : "geschlossen") + ".";
+      _room.WindowOpen = nowOpen;
     }
   }
 }

@@ -6,7 +6,7 @@ namespace Primitive_Architecture {
     private double _thermalNominal; // Scheduled output value.
     private double _thermalChange;  // Output changing rate.
 
-    private const int CtrMax = 5;                    // Maximum adjustment value.
+    public const int CtrMax = 5;                     // Maximum adjustment value.
     private const double ThermalMax = 2000;          // Maximum thermal output.
     private const double RiseDelay = 2;              // T1 value for PT-1 equation.
     private const double CooldownCoefficient = 0.55; // Factor to reduce cooldown speed.
@@ -18,8 +18,8 @@ namespace Primitive_Architecture {
 
     public HeaterAgent(TempEnvironment room) : base("Heater") {
       _room = room;
-      CtrValue = 3.9;
-      _thermalOutput = 400;
+      CtrValue = 0;
+      _thermalOutput = 0;
     }
 
 
@@ -42,9 +42,8 @@ namespace Primitive_Architecture {
 
     protected override string ToString() {
       var control = (double) ((int) (CtrValue*10))/10 + " /" + CtrMax;
-      var percent = 0;
-      if (_thermalNominal > 0) percent = (int)Math.Round((_thermalOutput/_thermalNominal)*100);
-      return "Agent: " + _id + " - Stellwert: " + control + " - Leistung: " + percent+ " %";
+      var percent = (int) Math.Round((_thermalOutput/ThermalMax)*100);
+      return "Agent: " + _id + " - Stellwert: " + control + " - Leistung: " + percent+" %";
     }
   }
 }
