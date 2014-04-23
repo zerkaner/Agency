@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Primitive_Architecture {
+namespace Primitive_Architecture.Dummies {
   internal class TempEnvironment : Environment {
     private const double Temp1 = 15;
     private const double Temp2 = 28;
@@ -21,22 +21,20 @@ namespace Primitive_Architecture {
 
 
     public override void Tick() {
-
       // Thermal value corresponding to one degree Celsius.
-      const double tempUnit = (Thermal2 - Thermal1) / (Temp2 - Temp1);
+      const double tempUnit = (Thermal2 - Thermal1)/(Temp2 - Temp1);
 
       // Environmental cool off - increased, if window is opened.
       var tempLoss = (Temperature - Temp1)*tempUnit;
       if (WindowOpen) tempLoss *= 1 + ((Temperature - Temp1)/(Temp2 - Temp1))*WindowInfl;
 
       // Summarize thermal gain and loss to get the new temperature.
-      Temperature = Temperature + 0.5 * (TempGain - tempLoss)/tempUnit;
+      Temperature = Temperature + 0.5*(TempGain - tempLoss)/tempUnit;
 
       // Parameter, Spaces total (- = left-aligned, digits before . digits after)
-      Console.WriteLine("Agent: Room   - Temperatur: " + String.Format("{0,4:00.0}", Temperature) 
-             + " °C ("+(int)TempGain+" / "+(int)tempLoss+
-             ") - Fenster: " + (WindowOpen ? "offen" : "geschlossen") + ".");
+      Console.WriteLine("Agent: Room   - Temperatur: " + String.Format("{0,4:00.0}", Temperature)
+                        + " °C (" + (int) TempGain + " / " + (int) tempLoss +
+                        ") - Fenster: " + (WindowOpen ? "offen" : "geschlossen") + ".");
     }
-
   }
 }

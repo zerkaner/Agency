@@ -31,21 +31,37 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agent.cs" />
-    <Compile Include="AgentSmith.cs" />
-    <Compile Include="Environment.cs" />
-    <Compile Include="Executor.cs" />
-    <Compile Include="HeaterAgent.cs" />
-    <Compile Include="TempAgent.cs" />
-    <Compile Include="TempEnvironment.cs" />
+    <Compile Include="Agents\Action.cs" />
+    <Compile Include="Agents\Agent.cs" />
+    <Compile Include="Agents\AgentSmith.cs" />
+    <Compile Include="Agents\Input.cs" />
+    <Compile Include="Agents\PerceptionUnit.cs" />
+    <Compile Include="Agents\Plan.cs" />
+    <Compile Include="Agents\Sensor.cs" />
+    <Compile Include="Agents\SensorInput.cs" />
+    <Compile Include="Dummies\Environment.cs" />
+    <Compile Include="Dummies\Executor.cs" />
+    <Compile Include="Agents\Heater.cs" />
+    <Compile Include="Interaction\Generic\IGenericAPI.cs" />
+    <Compile Include="Interaction\Generic\Interaction.cs" />
+    <Compile Include="Interaction\Manipulate\IManipulateTPI.cs" />
+    <Compile Include="Interaction\Manipulate\ManipulateInteraction.cs" />
+    <Compile Include="Interaction\Manipulate\IManipulateSPI.cs" />
+    <Compile Include="Interfaces\ITickClient.cs" />
+    <Compile Include="Agents\TempAgent.cs" />
+    <Compile Include="Dummies\TempEnvironment.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

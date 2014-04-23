@@ -1,9 +1,10 @@
 ﻿using System;
+using Primitive_Architecture.Dummies;
 
-namespace Primitive_Architecture {
+namespace Primitive_Architecture.Agents {
   internal class TempAgent : Agent {
     private readonly TempEnvironment _room; // The room to heat.
-    private readonly HeaterAgent _heater; // Heater used to set temperature.
+    private readonly Heater _heater; // Heater used to set temperature.
 
     private double _lastTemp;       // The last measured temperature. Not used!
     private double _adjustment;     // Only used for status output.
@@ -12,36 +13,42 @@ namespace Primitive_Architecture {
     public double NominalTemp { get; set; }
 
 
-    public TempAgent(TempEnvironment room, HeaterAgent heater) : base("Contrl") {
+    public TempAgent(TempEnvironment room, Heater heater) : base("Contrl", null) {
       _room = room;
       _heater = heater;
       NominalTemp = 25;
     }
 
 
-    public override void Tick() {
+    //TODO Muß weg!
+    public new void Tick() {
       // Get current temperature and calculate the deltas.
       var temp = _room.Temperature;
       var diffTemp = temp - _lastTemp;
       var diffNominal = NominalTemp - temp;
 
       // Here comes the black magic ...
-      var newCtrl = _heater.CtrValue/HeaterAgent.CtrMax;   // Current setting.
+      var newCtrl = _heater.CtrValue/Heater.CtrMax;   // Current setting.
       newCtrl += (TransientValue*diffNominal/NominalTemp); // Adjustment value.  
       if (newCtrl > 1) newCtrl = 1;                        //| Correction to fit
       if (newCtrl < 0) newCtrl = 0;                        //| percentage scale.
       if (_room.WindowOpen) newCtrl = 0;                   // Save the planet!
-      _adjustment = newCtrl - (_heater.CtrValue/HeaterAgent.CtrMax);
+      _adjustment = newCtrl - (_heater.CtrValue/Heater.CtrMax);
 
       // Set heater control value and save temperature as reference for next run.
-      _heater.CtrValue = newCtrl*HeaterAgent.CtrMax;
+      _heater.CtrValue = newCtrl*Heater.CtrMax;
       _lastTemp = temp;
       Console.WriteLine(ToString());
     }
 
+    protected override Plan CreatePlan() {
+      throw new NotImplementedException();
+    }
+
 
     protected override string ToString() {
-      return "Agent: " + _id + " - Änderung: " + (int)(_adjustment*100) + " %.";
+      return "Agent: " + Id + " - Sollwert: " + String.Format("{0,4:00.0}", NominalTemp) + 
+             " °C - Änderung:" + String.Format("{0,5:0.0}", _adjustment*100) + " %.";
     }
   }
 }

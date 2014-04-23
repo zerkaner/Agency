@@ -1,6 +1,7 @@
 ﻿using System;
+using Primitive_Architecture.Dummies;
 
-namespace Primitive_Architecture {
+namespace Primitive_Architecture.Agents {
   internal class AgentSmith : Agent {
     private readonly TempEnvironment _room; // The room where Smith lives in.
 
@@ -9,12 +10,13 @@ namespace Primitive_Architecture {
     ///   An agent walks into a bar ...
     /// </summary>
     /// <param name="room"></param>
-    public AgentSmith(TempEnvironment room) : base("Smith ") {
+    public AgentSmith(TempEnvironment room) : base("Smith ", null) {
       _room = room;
     }
 
 
-    public override void Tick() {
+    //TODO Muß weg!
+    public new void Tick() {
 
       // Smith really likes a breeze of fresh air every now and then ...
       var random = new Random();
@@ -28,6 +30,10 @@ namespace Primitive_Architecture {
                           (nowOpen? "geöffnet" : "geschlossen") + "! ***");
 
       _room.WindowOpen = nowOpen;
+    }
+
+    protected override Plan CreatePlan() {
+      throw new NotImplementedException();
     }
   }
 }

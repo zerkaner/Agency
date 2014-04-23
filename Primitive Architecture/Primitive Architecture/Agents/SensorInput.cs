@@ -4,11 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Primitive_Architecture {
-  
-  abstract class Environment {
-
-    public abstract void Tick();
-
+namespace Primitive_Architecture.Agents {
+  class SensorInput : Input {
   }
 }
