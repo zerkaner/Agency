@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Primitive_Architecture.Agents {
+namespace Primitive_Architecture.Perception {
   class PerceptionUnit {
 
     private readonly List<Sensor> _sensors;

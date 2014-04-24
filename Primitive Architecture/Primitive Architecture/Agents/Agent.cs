@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Primitive_Architecture.Interaction;
 using Primitive_Architecture.Interfaces;
+using Primitive_Architecture.Perception;
 
 namespace Primitive_Architecture.Agents {
   internal abstract class Agent : ITickClient {

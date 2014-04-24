@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Primitive_Architecture.Agents;
+using Primitive_Architecture.Agents.Heating;
+using Primitive_Architecture.Dummies.Heating;
 using Primitive_Architecture.Interfaces;
 
 namespace Primitive_Architecture.Dummies {

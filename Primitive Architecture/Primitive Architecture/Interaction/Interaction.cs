@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Primitive_Architecture.Interaction.Generic {
+namespace Primitive_Architecture.Interaction {
   internal abstract class Interaction {
     
     private readonly string _id;

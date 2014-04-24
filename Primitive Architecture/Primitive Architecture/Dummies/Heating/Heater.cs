@@ -1,8 +1,7 @@
 ﻿using System;
-using Primitive_Architecture.Dummies;
 using Primitive_Architecture.Interfaces;
 
-namespace Primitive_Architecture.Agents {
+namespace Primitive_Architecture.Dummies.Heating {
   internal class Heater : ITickClient {
     private double _thermalOutput; // Actual thermal output.
     private double _thermalNominal; // Scheduled output value.

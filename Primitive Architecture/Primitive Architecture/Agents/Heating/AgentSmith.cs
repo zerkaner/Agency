@@ -1,7 +1,8 @@
 ﻿using System;
-using Primitive_Architecture.Dummies;
+using Primitive_Architecture.Dummies.Heating;
+using Primitive_Architecture.Interaction;
 
-namespace Primitive_Architecture.Agents {
+namespace Primitive_Architecture.Agents.Heating {
   internal class AgentSmith : Agent {
     private readonly TempEnvironment _room; // The room where Smith lives in.
 

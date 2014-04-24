@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Primitive_Architecture.Agents {
-  class SensorInput : Input {
+namespace Primitive_Architecture.Perception.Heating {
+  class WindowInput : SensorInput{
   }
 }

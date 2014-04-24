@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Primitive_Architecture.Dummies {
+namespace Primitive_Architecture.Dummies.Heating {
   internal class TempEnvironment : Environment {
     private const double Temp1 = 15;
     private const double Temp2 = 28;
