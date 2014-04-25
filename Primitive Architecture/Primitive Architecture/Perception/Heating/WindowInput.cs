@@ -6,5 +6,8 @@ using System.Threading.Tasks;
 
 namespace Primitive_Architecture.Perception.Heating {
   class WindowInput : SensorInput{
+    public WindowInput(Sensor originSensor) : base(originSensor) {
+      
+    }
   }
 }

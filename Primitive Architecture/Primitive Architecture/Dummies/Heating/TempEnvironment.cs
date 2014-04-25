@@ -1,7 +1,10 @@
 ﻿using System;
+using Primitive_Architecture.Perception.Heating;
 
 namespace Primitive_Architecture.Dummies.Heating {
-  internal class TempEnvironment : Environment {
+  internal class TempEnvironment : Environment, 
+    IHeaterDataSource, IWindowDataSource, ITempDataSource {
+    
     private const double Temp1 = 15;
     private const double Temp2 = 28;
     private const double Thermal1 = 0;
@@ -35,6 +38,20 @@ namespace Primitive_Architecture.Dummies.Heating {
       Console.WriteLine("Agent: Room   - Temperatur: " + String.Format("{0,4:00.0}", Temperature)
                         + " °C (" + (int) TempGain + " / " + (int) tempLoss +
                         ") - Fenster: " + (WindowOpen ? "offen" : "geschlossen") + ".");
+    }
+
+
+
+    public HeaterInput GetHeaterState() {
+      throw new NotImplementedException();
+    }
+
+    public WindowInput GetWindowState() {
+      throw new NotImplementedException();
+    }
+
+    public TempInput GetTempState() {
+      throw new NotImplementedException();
     }
   }
 }

@@ -1,8 +1,9 @@
 ﻿using System;
 using Primitive_Architecture.Interfaces;
+using Primitive_Architecture.Perception.Heating;
 
 namespace Primitive_Architecture.Dummies.Heating {
-  internal class Heater : ITickClient {
+  internal class Heater : ITickClient, IHeaterDataSource {
     private double _thermalOutput; // Actual thermal output.
     private double _thermalNominal; // Scheduled output value.
     private double _thermalChange; // Output changing rate.
@@ -42,6 +43,10 @@ namespace Primitive_Architecture.Dummies.Heating {
       var control = (double) ((int) (CtrValue*10))/10 + " /" + CtrMax;
       var percent = (int) Math.Round(_thermalOutput/ThermalMax*100);
       return "Heater: - Stellwert: " + control + " - Leistung: " + percent + " %";
+    }
+
+    public double GetHeaterValue() {
+      return CtrValue;
     }
   }
 }

@@ -40,9 +40,14 @@
   <ItemGroup>
     <Compile Include="Agents\Agent.cs" />
     <Compile Include="Agents\Heating\AgentSmith.cs" />
+    <Compile Include="Perception\GenericSensor.cs" />
+    <Compile Include="Perception\GenericSensorInput.cs" />
     <Compile Include="Perception\Heating\HeaterInput.cs" />
+    <Compile Include="Perception\Heating\HeaterSensor.cs" />
+    <Compile Include="Perception\Heating\TempSensor.cs" />
     <Compile Include="Perception\Heating\TempInput.cs" />
     <Compile Include="Perception\Heating\WindowInput.cs" />
+    <Compile Include="Perception\Heating\WindowSensor.cs" />
     <Compile Include="Perception\Input.cs" />
     <Compile Include="Perception\PerceptionUnit.cs" />
     <Compile Include="Interaction\Plan.cs" />

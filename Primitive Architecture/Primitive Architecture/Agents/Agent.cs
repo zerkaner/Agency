@@ -12,6 +12,13 @@ namespace Primitive_Architecture.Agents {
     protected readonly string Id;
     private readonly PerceptionUnit _perceptionUnit;
 
+
+    /// <summary>
+    /// Constructor for an abstract agent. It serves as a base class that is extended with
+    /// domain specific sensors, actions and reasoning, optionally extended by a knowledge base.  
+    /// </summary>
+    /// <param name="id">A unique identifier, shall be used for log and communication.</param>
+    /// <param name="sensors">List of sensors that are attached to the perception unit.</param>
     protected Agent(string id, List<Sensor> sensors) {
       Id = id;
       _debugEnabled = true;

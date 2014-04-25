@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Primitive_Architecture.Perception.Heating {
+  internal class HeaterInput : SensorInput {
+    public double HeatingValue { private set; get; }
 
-namespace Primitive_Architecture.Perception.Heating {
-  class HeaterInput : SensorInput{
+    public HeaterInput(Sensor originSensor, double value) : base(originSensor) {
+      HeatingValue = value;
+    }
   }
 }
