@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Primitive_Architecture.Dummies;
 using Primitive_Architecture.Interaction;
 using Primitive_Architecture.Interfaces;
 using Primitive_Architecture.Perception;
@@ -7,10 +8,11 @@ using Primitive_Architecture.Perception;
 namespace Primitive_Architecture.Agents {
   internal abstract class Agent : ITickClient {
     
-    private readonly bool _debugEnabled;
+    protected readonly bool DebugEnabled;
     private int _cycle;
     protected readonly string Id;
     private readonly PerceptionUnit _perceptionUnit;
+    protected Vector3D Position; 
 
 
     /// <summary>
@@ -21,7 +23,7 @@ namespace Primitive_Architecture.Agents {
     /// <param name="sensors">List of sensors that are attached to the perception unit.</param>
     protected Agent(string id, List<Sensor> sensors) {
       Id = id;
-      _debugEnabled = true;
+      DebugEnabled = true;
       _perceptionUnit = new PerceptionUnit(sensors);
     }
 
@@ -37,7 +39,7 @@ namespace Primitive_Architecture.Agents {
       plan.GetNextAction().Execute(); // Phase 3: Execution
 
       // Print the runtime information for debug purposes. 
-      if (_debugEnabled) {
+      if (DebugEnabled) {
         _cycle++;  //TODO Checken, ob das toString() dieser Klasse aufgerufen wird, wenn kein anderes existiert.
         Console.Write(ToString());
       }
@@ -45,9 +47,9 @@ namespace Primitive_Architecture.Agents {
 
 
     /// <summary>
-    /// 
+    /// The reasoning function. It performs all planning/learning/thinking and returns a plan. 
     /// </summary>
-    /// <returns></returns>
+    /// <returns>A sequential list of actions to execute.</returns>
     protected abstract Plan CreatePlan();
  
 

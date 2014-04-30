@@ -1,9 +1,9 @@
 ﻿using System;
-using Primitive_Architecture.Perception.Heating;
+using Primitive_Architecture.Interfaces;
+using Primitive_Architecture.Perception;
 
 namespace Primitive_Architecture.Dummies.Heating {
-  internal class TempEnvironment : Environment, 
-    IHeaterDataSource, IWindowDataSource, ITempDataSource {
+  internal class TempEnvironment : Environment, IGenericDataSource, ICallbackDataSource {
     
     private const double Temp1 = 15;
     private const double Temp2 = 28;
@@ -42,15 +42,19 @@ namespace Primitive_Architecture.Dummies.Heating {
 
 
 
-    public HeaterInput GetHeaterState() {
-      throw new NotImplementedException();
+    //TODO 0=Temp, 1=HeaterAgent, 2=WindowState
+    public SensorInput GetData (int dataType) {
+      var gsi = new GenericSensorInput(null); 
+      switch (dataType) {
+        case 0: gsi.Values.Add("Temperature", Temperature); break;
+        //case 1: gsi.Values.Add("HeatingLevel", null); break;
+        case 2: gsi.Values.Add("WindowOpen", WindowOpen); break;
+      }
+      return gsi;
     }
 
-    public WindowInput GetWindowState() {
-      throw new NotImplementedException();
-    }
 
-    public TempInput GetTempState() {
+    public void SetCallbackMode(bool enabled, SensorInput inputStorage) {
       throw new NotImplementedException();
     }
   }

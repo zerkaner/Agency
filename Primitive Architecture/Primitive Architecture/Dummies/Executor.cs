@@ -4,7 +4,6 @@ using Primitive_Architecture.Agents.Heating;
 using Primitive_Architecture.Dummies.Heating;
 using Primitive_Architecture.Interfaces;
 using Primitive_Architecture.Perception;
-using Primitive_Architecture.Perception.Heating;
 
 namespace Primitive_Architecture.Dummies {
   internal class Executor {
@@ -12,9 +11,9 @@ namespace Primitive_Architecture.Dummies {
 
     private Executor() {
       var environment = new TempEnvironment();
-      var heater = new Heater(environment);
+      var heater = new HeaterAgent(environment);
       var sensors1 = new List<Sensor> {
-        new HeaterSensor(environment), new TempSensor(environment), new WindowSensor(environment)
+        //TODO new HeaterSensor(environment), new TempSensor(environment), new WindowSensor(environment)
       };
       var contrl = new TempAgent(environment, heater, sensors1);
       var smith = new AgentSmith(environment);
@@ -35,9 +34,7 @@ namespace Primitive_Architecture.Dummies {
 
     public static void Main() {
       //new Executor().Run();
-      
-      Input input = new SensorInput(null);
-      Console.WriteLine(input.Timestamp);
+  
       Console.ReadLine();
     }
   }
